@@ -105,8 +105,15 @@ from caom2pipe import caom_composable as cc
 from caom2pipe import manage_composable as mc
 
 
-__all__ = ['phangs_main_app', 'update', 'PHANGSName', 'COLLECTION',
-           'APPLICATION', 'ARCHIVE', 'to_caom2']
+__all__ = [
+    'phangs_main_app',
+    'update',
+    'PHANGSName',
+    'COLLECTION',
+    'APPLICATION',
+    'ARCHIVE',
+    'to_caom2',
+]
 
 
 APPLICATION = 'phangs2caom2'
@@ -134,13 +141,20 @@ class PHANGSName(mc.StorageName):
             self._file_id = mc.StorageName.remove_extensions(file_name)
         self._assign_bits()
         super(PHANGSName, self).__init__(
-            self._obs_id, COLLECTION, PHANGSName.PHANGS_NAME_PATTERN,
-            fname_on_disk=file_name, compression='', entry=entry)
+            self._obs_id,
+            COLLECTION,
+            PHANGSName.PHANGS_NAME_PATTERN,
+            fname_on_disk=file_name,
+            compression='',
+            entry=entry,
+        )
 
     def __str__(self):
-        return f'obs_id {self._obs_id}, ' \
-               f'product_id {self._product_id}, ' \
-               f'file_id {self._file_id}'
+        return (
+            f'obs_id {self._obs_id}, '
+            f'product_id {self._product_id}, '
+            f'file_id {self._file_id}'
+        )
 
     @property
     def file_id(self):
@@ -164,8 +178,9 @@ class PHANGSName(mc.StorageName):
 
     def is_x(self):
         return (
-            '_strictmask' in self._file_id or '_broadmask' in self._file_id or
-            '_coverage' in self._file_id
+            '_strictmask' in self._file_id
+            or '_broadmask' in self._file_id
+            or '_coverage' in self._file_id
         )
 
     def is_error(self):
@@ -193,21 +208,20 @@ class PHANGSName(mc.StorageName):
         self._telescope = telescope_lookup.get(bits[1])
         if self._telescope is None:
             raise mc.CadcException(
-                f'Unexpected telescope value in {self._file_id}')
+                f'Unexpected telescope value in {self._file_id}'
+            )
 
         # PD - Confluence guidance
         end_index = len(bits) - 1
         if len(bits) == 3 or 'tpeak' in self._file_id:
             self._product_id = self._file_id
-        elif (
-            self._file_id.endswith('_noise') or
-            self.is_x()
-        ):
+        elif self._file_id.endswith('_noise') or self.is_x():
             self._product_id = '_'.join(ii for ii in bits[:end_index])
         elif re.match('.*mom[012]', self._file_id):
-            self._product_id = \
-                f'{"_".join(ii for ii in bits[:end_index])}_mom' \
+            self._product_id = (
+                f'{"_".join(ii for ii in bits[:end_index])}_mom'
                 f'{self._file_id[-1]}'
+            )
         elif re.match('.*ew', self._file_id):
             self._product_id = '_'.join(ii for ii in bits[:end_index]) + '_ew'
         elif len(bits) == 4:
@@ -219,7 +233,7 @@ class PHANGSName(mc.StorageName):
 
 
 def accumulate_bp(bp, uri):
-    """Configure the telescope-specific ObsBlueprint at the CAOM model 
+    """Configure the telescope-specific ObsBlueprint at the CAOM model
     Observation level."""
     logging.debug('Begin accumulate_bp.')
     bp.configure_position_axes((1, 2))
@@ -295,8 +309,8 @@ def accumulate_bp(bp, uri):
 
     # observable
     if (
-        artifact_product_type in [ProductType.SCIENCE, ProductType.NOISE] or
-        storage_name.is_error()  # some auxiliary Artifacts have observables
+        artifact_product_type in [ProductType.SCIENCE, ProductType.NOISE]
+        or storage_name.is_error()  # some auxiliary Artifacts have observables
     ):
         bp.configure_observable_axis(4)
         bp.set(
@@ -328,8 +342,10 @@ def update(observation, **kwargs):
     if fqn is not None:
         phangs_name = PHANGSName(file_name=os.path.basename(fqn))
     if phangs_name is None:
-        raise mc.CadcException(f'Need one of fqn or uri defined for '
-                               f'{observation.observation_id}')
+        raise mc.CadcException(
+            f'Need one of fqn or uri defined for '
+            f'{observation.observation_id}'
+        )
 
     _update_from_comment(observation, phangs_name, headers)
     for plane in observation.planes.values():
@@ -387,7 +403,7 @@ def _get_position_resolution(header):
     # Clare Chandler via JJK - 21-08-18
     result = None
     if bmaj is not None and bmin is not None:
-        result = 3600.0 * sqrt(bmaj*bmin)
+        result = 3600.0 * sqrt(bmaj * bmin)
     return result
 
 
@@ -403,8 +419,7 @@ def _get_uris(args):
             file_name = f'{file_id}.fits'
             result.append(PHANGSName(file_name=file_name).file_uri)
     else:
-        raise mc.CadcException(
-            f'Could not define uri from these args {args}')
+        raise mc.CadcException(f'Could not define uri from these args {args}')
     return result
 
 
@@ -457,7 +472,8 @@ def _update_from_comment(observation, phangs_name, headers):
                 plane.provenance.organization = 'PHANGS'
             elif 'Release generated at ' in entry:
                 plane.provenance.last_executed = mc.make_time_tz(
-                    entry.split(' at ')[1])
+                    entry.split(' at ')[1]
+                )
             elif 'Data from ALMA Proposal ID:' in entry:
                 observation.proposal = Proposal(entry.split(':')[1].strip())
             elif 'Canonical Reference: ' in entry:
@@ -477,8 +493,8 @@ def _update_from_comment(observation, phangs_name, headers):
 def _update_plane_provenance(plane, obs_id, phangs_name):
     logging.debug(f'Begin _update_plane_provenance for {plane.product_id}')
     if (
-        plane.provenance is not None and
-            plane.calibration_level == CalibrationLevel.PRODUCT
+        plane.provenance is not None
+        and plane.calibration_level == CalibrationLevel.PRODUCT
     ):
         bits = phangs_name.file_name.split('_')
         # file id                               prov id
@@ -495,15 +511,14 @@ def _update_plane_provenance(plane, obs_id, phangs_name):
 
 
 def to_caom2():
-    """This function is called by pipeline execution. It must have this name.
-    """
+    """This function is called by pipeline execution. It must have this name."""
     args = get_gen_proc_arg_parser().parse_args()
     uris = _get_uris(args)
     blueprints = _build_blueprints(uris)
     result = gen_proc(args, blueprints)
     logging.debug(f'Done {APPLICATION} processing.')
     return result
-           
+
 
 def phangs_main_app():
     args = get_gen_proc_arg_parser().parse_args()

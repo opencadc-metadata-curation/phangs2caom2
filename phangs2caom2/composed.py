@@ -97,10 +97,14 @@ def _run():
         is used by airflow for task instance management and reporting.
     """
     name_builder = nbc.FileNameBuilder(PHANGSName)
-    return rc.run_by_todo(config=None, name_builder=name_builder,
-                          command_name=APPLICATION,
-                          meta_visitors=META_VISITORS, 
-                          data_visitors=DATA_VISITORS, chooser=None)
+    return rc.run_by_todo(
+        config=None,
+        name_builder=name_builder,
+        command_name=APPLICATION,
+        meta_visitors=META_VISITORS,
+        data_visitors=DATA_VISITORS,
+        chooser=None,
+    )
 
 
 def run():
@@ -120,11 +124,17 @@ def _run_state():
     processed.
     """
     name_builder = nbc.FileNameBuilder(PHANGSName)
-    return rc.run_by_state(config=None, name_builder=name_builder,
-                           command_name=APPLICATION, 
-                           bookmark_name=None, meta_visitors=META_VISITORS,
-                           data_visitors=DATA_VISITORS, end_time=None,
-                           source=None, chooser=None)
+    return rc.run_by_state(
+        config=None,
+        name_builder=name_builder,
+        command_name=APPLICATION,
+        bookmark_name=None,
+        meta_visitors=META_VISITORS,
+        data_visitors=DATA_VISITORS,
+        end_time=None,
+        source=None,
+        chooser=None,
+    )
 
 
 def run_state():

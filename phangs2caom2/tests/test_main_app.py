@@ -161,7 +161,7 @@ LOOKUP = {
         'ngc2903_7m+tp_co21_strictmask.fits.header',
         'ngc2903_7m+tp_co21_11as_strict_eew.fits.header',
         'ngc2903_7m+tp_co21_15as_strict_ew.fits.header',
-    ]
+    ],
 }
 
 
@@ -205,9 +205,9 @@ def _get_lineage(obs_id):
     result = ''
     for ii in LOOKUP[obs_id]:
         storage_name = PHANGSName(file_name=ii)
-        fits = mc.get_lineage(
-            ARCHIVE, storage_name.product_id, ii
-        ).replace('.header', '')
+        fits = mc.get_lineage(ARCHIVE, storage_name.product_id, ii).replace(
+            '.header', ''
+        )
         result = f'{result } {fits}'
     return result
 
