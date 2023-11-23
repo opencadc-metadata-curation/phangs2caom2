@@ -34,11 +34,11 @@
         <caom2:name>PHANGS-ALMA pipeline</caom2:name>
         <caom2:project>PHANGS-ALMA</caom2:project>
         <caom2:producer>Leroy et al. (2021), ApJ, Submitted</caom2:producer>
-        <caom2:lastExecuted>2021-03-06T11:03:14.174</caom2:lastExecuted>
+        <caom2:lastExecuted>2021-03-06T11:03:14.174468</caom2:lastExecuted>
       </caom2:provenance>
       <caom2:artifacts>
         <caom2:artifact caom2:id="ff25934d-4459-428c-b79f-2c15a15a1c83">
-          <caom2:uri>ad:PHANGS/ngc2903_12m+7m+tp_co21.fits</caom2:uri>
+          <caom2:uri>cadc:PHANGS/ngc2903_12m+7m+tp_co21.fits</caom2:uri>
           <caom2:productType>science</caom2:productType>
           <caom2:releaseType>data</caom2:releaseType>
           <caom2:contentType>application/fits</caom2:contentType>
@@ -226,7 +226,7 @@
           </caom2:parts>
         </caom2:artifact>
         <caom2:artifact caom2:id="b7f6314f-2297-4022-a3e0-9534c42bce68">
-          <caom2:uri>ad:PHANGS/ngc2903_12m+7m+tp_co21_broadmask.fits</caom2:uri>
+          <caom2:uri>cadc:PHANGS/ngc2903_12m+7m+tp_co21_broadmask.fits</caom2:uri>
           <caom2:productType>auxiliary</caom2:productType>
           <caom2:releaseType>data</caom2:releaseType>
           <caom2:contentType>application/fits</caom2:contentType>
@@ -405,7 +405,7 @@
           </caom2:parts>
         </caom2:artifact>
         <caom2:artifact caom2:id="2fe43db1-e7db-4e9e-9496-082fedccb071">
-          <caom2:uri>ad:PHANGS/ngc2903_12m+7m+tp_co21_noise.fits</caom2:uri>
+          <caom2:uri>cadc:PHANGS/ngc2903_12m+7m+tp_co21_noise.fits</caom2:uri>
           <caom2:productType>noise</caom2:productType>
           <caom2:releaseType>data</caom2:releaseType>
           <caom2:contentType>application/fits</caom2:contentType>
@@ -593,7 +593,7 @@
           </caom2:parts>
         </caom2:artifact>
         <caom2:artifact caom2:id="7f431c07-f2a5-429f-9984-3fcfd36425ab">
-          <caom2:uri>ad:PHANGS/ngc2903_12m+7m+tp_co21_strictmask.fits</caom2:uri>
+          <caom2:uri>cadc:PHANGS/ngc2903_12m+7m+tp_co21_strictmask.fits</caom2:uri>
           <caom2:productType>auxiliary</caom2:productType>
           <caom2:releaseType>data</caom2:releaseType>
           <caom2:contentType>application/fits</caom2:contentType>
@@ -783,14 +783,14 @@
         <caom2:name>PHANGS-ALMA pipeline</caom2:name>
         <caom2:project>PHANGS-ALMA</caom2:project>
         <caom2:producer>Leroy et al. (2021), ApJ, Submitted</caom2:producer>
-        <caom2:lastExecuted>2021-03-06T11:03:14.174</caom2:lastExecuted>
+        <caom2:lastExecuted>2021-03-06T11:03:14.174468</caom2:lastExecuted>
         <caom2:inputs>
           <caom2:planeURI>caom:PHANGS/ngc2903_12m+7m+tp_co21/ngc2903_12m+7m+tp_co21</caom2:planeURI>
         </caom2:inputs>
       </caom2:provenance>
       <caom2:artifacts>
         <caom2:artifact caom2:id="ff404b1f-523d-4ab6-8706-1e6c7beed09e">
-          <caom2:uri>ad:PHANGS/ngc2903_12m+7m+tp_co21_2as.fits</caom2:uri>
+          <caom2:uri>cadc:PHANGS/ngc2903_12m+7m+tp_co21_2as.fits</caom2:uri>
           <caom2:productType>science</caom2:productType>
           <caom2:releaseType>data</caom2:releaseType>
           <caom2:contentType>application/fits</caom2:contentType>
@@ -978,7 +978,7 @@
           </caom2:parts>
         </caom2:artifact>
         <caom2:artifact caom2:id="bb48235c-894d-4a6c-ba27-dc014dffa7d1">
-          <caom2:uri>ad:PHANGS/ngc2903_12m+7m+tp_co21_2as_coverage.fits</caom2:uri>
+          <caom2:uri>cadc:PHANGS/ngc2903_12m+7m+tp_co21_2as_coverage.fits</caom2:uri>
           <caom2:productType>auxiliary</caom2:productType>
           <caom2:releaseType>data</caom2:releaseType>
           <caom2:contentType>application/fits</caom2:contentType>
@@ -1157,7 +1157,7 @@
           </caom2:parts>
         </caom2:artifact>
         <caom2:artifact caom2:id="2336cda3-f14a-451f-9b17-1a2481d2334a">
-          <caom2:uri>ad:PHANGS/ngc2903_12m+7m+tp_co21_2as_noise.fits</caom2:uri>
+          <caom2:uri>cadc:PHANGS/ngc2903_12m+7m+tp_co21_2as_noise.fits</caom2:uri>
           <caom2:productType>noise</caom2:productType>
           <caom2:releaseType>data</caom2:releaseType>
           <caom2:contentType>application/fits</caom2:contentType>
@@ -1345,7 +1345,7 @@
           </caom2:parts>
         </caom2:artifact>
         <caom2:artifact caom2:id="b9e48154-25fa-4c98-8ea4-5387198845d2">
-          <caom2:uri>ad:PHANGS/ngc2903_12m+7m+tp_co21_2as_strictmask.fits</caom2:uri>
+          <caom2:uri>cadc:PHANGS/ngc2903_12m+7m+tp_co21_2as_strictmask.fits</caom2:uri>
           <caom2:productType>auxiliary</caom2:productType>
           <caom2:releaseType>data</caom2:releaseType>
           <caom2:contentType>application/fits</caom2:contentType>
@@ -1535,14 +1535,14 @@
         <caom2:name>PHANGS-ALMA pipeline</caom2:name>
         <caom2:project>PHANGS-ALMA</caom2:project>
         <caom2:producer>Leroy et al. (2021), ApJ, Submitted</caom2:producer>
-        <caom2:lastExecuted>2021-03-06T11:03:14.174</caom2:lastExecuted>
+        <caom2:lastExecuted>2021-03-06T11:03:14.174468</caom2:lastExecuted>
         <caom2:inputs>
           <caom2:planeURI>caom:PHANGS/ngc2903_12m+7m+tp_co21/ngc2903_12m+7m+tp_co21_2as</caom2:planeURI>
         </caom2:inputs>
       </caom2:provenance>
       <caom2:artifacts>
         <caom2:artifact caom2:id="28c7f8de-8a9a-4bc8-a95b-981ec05750ed">
-          <caom2:uri>ad:PHANGS/ngc2903_12m+7m+tp_co21_2as_broad_emom0.fits</caom2:uri>
+          <caom2:uri>cadc:PHANGS/ngc2903_12m+7m+tp_co21_2as_broad_emom0.fits</caom2:uri>
           <caom2:productType>auxiliary</caom2:productType>
           <caom2:releaseType>data</caom2:releaseType>
           <caom2:contentType>application/fits</caom2:contentType>
@@ -1707,7 +1707,7 @@
           </caom2:parts>
         </caom2:artifact>
         <caom2:artifact caom2:id="3418ab59-efc8-4abd-b559-d1368446f1a4">
-          <caom2:uri>ad:PHANGS/ngc2903_12m+7m+tp_co21_2as_broad_mom0.fits</caom2:uri>
+          <caom2:uri>cadc:PHANGS/ngc2903_12m+7m+tp_co21_2as_broad_mom0.fits</caom2:uri>
           <caom2:productType>science</caom2:productType>
           <caom2:releaseType>data</caom2:releaseType>
           <caom2:contentType>application/fits</caom2:contentType>
@@ -1883,14 +1883,14 @@
         <caom2:name>PHANGS-ALMA pipeline</caom2:name>
         <caom2:project>PHANGS-ALMA</caom2:project>
         <caom2:producer>Leroy et al. (2021), ApJ, Submitted</caom2:producer>
-        <caom2:lastExecuted>2021-03-06T11:03:14.174</caom2:lastExecuted>
+        <caom2:lastExecuted>2021-03-06T11:03:14.174468</caom2:lastExecuted>
         <caom2:inputs>
           <caom2:planeURI>caom:PHANGS/ngc2903_12m+7m+tp_co21/ngc2903_12m+7m+tp_co21</caom2:planeURI>
         </caom2:inputs>
       </caom2:provenance>
       <caom2:artifacts>
         <caom2:artifact caom2:id="05306532-a063-403c-8d4b-a346d7b2fd37">
-          <caom2:uri>ad:PHANGS/ngc2903_12m+7m+tp_co21_strict_eew.fits</caom2:uri>
+          <caom2:uri>cadc:PHANGS/ngc2903_12m+7m+tp_co21_strict_eew.fits</caom2:uri>
           <caom2:productType>auxiliary</caom2:productType>
           <caom2:releaseType>data</caom2:releaseType>
           <caom2:contentType>application/fits</caom2:contentType>
@@ -2055,7 +2055,7 @@
           </caom2:parts>
         </caom2:artifact>
         <caom2:artifact caom2:id="aaca8615-6171-46f1-bc30-b61957f0192d">
-          <caom2:uri>ad:PHANGS/ngc2903_12m+7m+tp_co21_strict_ew.fits</caom2:uri>
+          <caom2:uri>cadc:PHANGS/ngc2903_12m+7m+tp_co21_strict_ew.fits</caom2:uri>
           <caom2:productType>science</caom2:productType>
           <caom2:releaseType>data</caom2:releaseType>
           <caom2:contentType>application/fits</caom2:contentType>
@@ -2231,14 +2231,14 @@
         <caom2:name>PHANGS-ALMA pipeline</caom2:name>
         <caom2:project>PHANGS-ALMA</caom2:project>
         <caom2:producer>Leroy et al. (2021), ApJ, Submitted</caom2:producer>
-        <caom2:lastExecuted>2021-03-06T11:03:14.174</caom2:lastExecuted>
+        <caom2:lastExecuted>2021-03-06T11:03:14.174468</caom2:lastExecuted>
         <caom2:inputs>
           <caom2:planeURI>caom:PHANGS/ngc2903_12m+7m+tp_co21/ngc2903_12m+7m+tp_co21</caom2:planeURI>
         </caom2:inputs>
       </caom2:provenance>
       <caom2:artifacts>
         <caom2:artifact caom2:id="bbdaba44-5507-4f0f-a041-ac3da7927147">
-          <caom2:uri>ad:PHANGS/ngc2903_12m+7m+tp_co21_strict_emom0.fits</caom2:uri>
+          <caom2:uri>cadc:PHANGS/ngc2903_12m+7m+tp_co21_strict_emom0.fits</caom2:uri>
           <caom2:productType>auxiliary</caom2:productType>
           <caom2:releaseType>data</caom2:releaseType>
           <caom2:contentType>application/fits</caom2:contentType>
@@ -2403,7 +2403,7 @@
           </caom2:parts>
         </caom2:artifact>
         <caom2:artifact caom2:id="fa655c23-5261-4efe-b36d-40e9e92e83a8">
-          <caom2:uri>ad:PHANGS/ngc2903_12m+7m+tp_co21_strict_mom0.fits</caom2:uri>
+          <caom2:uri>cadc:PHANGS/ngc2903_12m+7m+tp_co21_strict_mom0.fits</caom2:uri>
           <caom2:productType>science</caom2:productType>
           <caom2:releaseType>data</caom2:releaseType>
           <caom2:contentType>application/fits</caom2:contentType>
@@ -2579,14 +2579,14 @@
         <caom2:name>PHANGS-ALMA pipeline</caom2:name>
         <caom2:project>PHANGS-ALMA</caom2:project>
         <caom2:producer>Leroy et al. (2021), ApJ, Submitted</caom2:producer>
-        <caom2:lastExecuted>2021-03-06T11:03:14.174</caom2:lastExecuted>
+        <caom2:lastExecuted>2021-03-06T11:03:14.174468</caom2:lastExecuted>
         <caom2:inputs>
           <caom2:planeURI>caom:PHANGS/ngc2903_12m+7m+tp_co21/ngc2903_12m+7m+tp_co21_2as</caom2:planeURI>
         </caom2:inputs>
       </caom2:provenance>
       <caom2:artifacts>
         <caom2:artifact caom2:id="88cf749a-02ae-44ab-894d-fc49a67402bd">
-          <caom2:uri>ad:PHANGS/ngc2903_12m+7m+tp_co21_2as_broad_tpeak.fits</caom2:uri>
+          <caom2:uri>cadc:PHANGS/ngc2903_12m+7m+tp_co21_2as_broad_tpeak.fits</caom2:uri>
           <caom2:productType>science</caom2:productType>
           <caom2:releaseType>data</caom2:releaseType>
           <caom2:contentType>application/fits</caom2:contentType>
@@ -2762,14 +2762,14 @@
         <caom2:name>PHANGS-ALMA pipeline</caom2:name>
         <caom2:project>PHANGS-ALMA</caom2:project>
         <caom2:producer>Leroy et al. (2021), ApJ, Submitted</caom2:producer>
-        <caom2:lastExecuted>2021-03-06T11:03:14.174</caom2:lastExecuted>
+        <caom2:lastExecuted>2021-03-06T11:03:14.174468</caom2:lastExecuted>
         <caom2:inputs>
           <caom2:planeURI>caom:PHANGS/ngc2903_12m+7m+tp_co21/ngc2903_12m+7m+tp_co21</caom2:planeURI>
         </caom2:inputs>
       </caom2:provenance>
       <caom2:artifacts>
         <caom2:artifact caom2:id="fc98a487-9650-4c12-804e-d594fd6e7cb5">
-          <caom2:uri>ad:PHANGS/ngc2903_12m+7m+tp_co21_strict_emom1.fits</caom2:uri>
+          <caom2:uri>cadc:PHANGS/ngc2903_12m+7m+tp_co21_strict_emom1.fits</caom2:uri>
           <caom2:productType>auxiliary</caom2:productType>
           <caom2:releaseType>data</caom2:releaseType>
           <caom2:contentType>application/fits</caom2:contentType>
@@ -2934,7 +2934,7 @@
           </caom2:parts>
         </caom2:artifact>
         <caom2:artifact caom2:id="32411a1e-b23b-43d6-8c41-3ffcc12bdb1f">
-          <caom2:uri>ad:PHANGS/ngc2903_12m+7m+tp_co21_strict_mom1.fits</caom2:uri>
+          <caom2:uri>cadc:PHANGS/ngc2903_12m+7m+tp_co21_strict_mom1.fits</caom2:uri>
           <caom2:productType>science</caom2:productType>
           <caom2:releaseType>data</caom2:releaseType>
           <caom2:contentType>application/fits</caom2:contentType>
@@ -3110,14 +3110,14 @@
         <caom2:name>PHANGS-ALMA pipeline</caom2:name>
         <caom2:project>PHANGS-ALMA</caom2:project>
         <caom2:producer>Leroy et al. (2021), ApJ, Submitted</caom2:producer>
-        <caom2:lastExecuted>2021-03-06T11:03:14.174</caom2:lastExecuted>
+        <caom2:lastExecuted>2021-03-06T11:03:14.174468</caom2:lastExecuted>
         <caom2:inputs>
           <caom2:planeURI>caom:PHANGS/ngc2903_12m+7m+tp_co21/ngc2903_12m+7m+tp_co21</caom2:planeURI>
         </caom2:inputs>
       </caom2:provenance>
       <caom2:artifacts>
         <caom2:artifact caom2:id="a816f5ba-a7c7-45ec-a853-5b1b55f8b89c">
-          <caom2:uri>ad:PHANGS/ngc2903_12m+7m+tp_co21_strict_emom2.fits</caom2:uri>
+          <caom2:uri>cadc:PHANGS/ngc2903_12m+7m+tp_co21_strict_emom2.fits</caom2:uri>
           <caom2:productType>auxiliary</caom2:productType>
           <caom2:releaseType>data</caom2:releaseType>
           <caom2:contentType>application/fits</caom2:contentType>
@@ -3282,7 +3282,7 @@
           </caom2:parts>
         </caom2:artifact>
         <caom2:artifact caom2:id="f654210a-a331-4594-ba6b-5108242a81f8">
-          <caom2:uri>ad:PHANGS/ngc2903_12m+7m+tp_co21_strict_mom2.fits</caom2:uri>
+          <caom2:uri>cadc:PHANGS/ngc2903_12m+7m+tp_co21_strict_mom2.fits</caom2:uri>
           <caom2:productType>science</caom2:productType>
           <caom2:releaseType>data</caom2:releaseType>
           <caom2:contentType>application/fits</caom2:contentType>
@@ -3458,14 +3458,14 @@
         <caom2:name>PHANGS-ALMA pipeline</caom2:name>
         <caom2:project>PHANGS-ALMA</caom2:project>
         <caom2:producer>Leroy et al. (2021), ApJ, Submitted</caom2:producer>
-        <caom2:lastExecuted>2021-03-06T11:03:14.174</caom2:lastExecuted>
+        <caom2:lastExecuted>2021-03-06T11:03:14.174468</caom2:lastExecuted>
         <caom2:inputs>
           <caom2:planeURI>caom:PHANGS/ngc2903_12m+7m+tp_co21/ngc2903_12m+7m+tp_co21_2as</caom2:planeURI>
         </caom2:inputs>
       </caom2:provenance>
       <caom2:artifacts>
         <caom2:artifact caom2:id="7c0ea69e-82eb-4bed-a656-a26ecba5e6b3">
-          <caom2:uri>ad:PHANGS/ngc2903_12m+7m+tp_co21_2as_strict_eew.fits</caom2:uri>
+          <caom2:uri>cadc:PHANGS/ngc2903_12m+7m+tp_co21_2as_strict_eew.fits</caom2:uri>
           <caom2:productType>auxiliary</caom2:productType>
           <caom2:releaseType>data</caom2:releaseType>
           <caom2:contentType>application/fits</caom2:contentType>
@@ -3630,7 +3630,7 @@
           </caom2:parts>
         </caom2:artifact>
         <caom2:artifact caom2:id="316e3dfb-64d2-402b-8d28-5eda0e981b65">
-          <caom2:uri>ad:PHANGS/ngc2903_12m+7m+tp_co21_2as_strict_ew.fits</caom2:uri>
+          <caom2:uri>cadc:PHANGS/ngc2903_12m+7m+tp_co21_2as_strict_ew.fits</caom2:uri>
           <caom2:productType>science</caom2:productType>
           <caom2:releaseType>data</caom2:releaseType>
           <caom2:contentType>application/fits</caom2:contentType>
@@ -3806,14 +3806,14 @@
         <caom2:name>PHANGS-ALMA pipeline</caom2:name>
         <caom2:project>PHANGS-ALMA</caom2:project>
         <caom2:producer>Leroy et al. (2021), ApJ, Submitted</caom2:producer>
-        <caom2:lastExecuted>2021-03-06T11:03:14.174</caom2:lastExecuted>
+        <caom2:lastExecuted>2021-03-06T11:03:14.174468</caom2:lastExecuted>
         <caom2:inputs>
           <caom2:planeURI>caom:PHANGS/ngc2903_12m+7m+tp_co21/ngc2903_12m+7m+tp_co21_2as</caom2:planeURI>
         </caom2:inputs>
       </caom2:provenance>
       <caom2:artifacts>
         <caom2:artifact caom2:id="128dedb0-1a36-45d1-a299-0e89083416ba">
-          <caom2:uri>ad:PHANGS/ngc2903_12m+7m+tp_co21_2as_strict_emom0.fits</caom2:uri>
+          <caom2:uri>cadc:PHANGS/ngc2903_12m+7m+tp_co21_2as_strict_emom0.fits</caom2:uri>
           <caom2:productType>auxiliary</caom2:productType>
           <caom2:releaseType>data</caom2:releaseType>
           <caom2:contentType>application/fits</caom2:contentType>
@@ -3978,7 +3978,7 @@
           </caom2:parts>
         </caom2:artifact>
         <caom2:artifact caom2:id="971e0615-7e8c-4e14-9326-b2b8cf69c889">
-          <caom2:uri>ad:PHANGS/ngc2903_12m+7m+tp_co21_2as_strict_mom0.fits</caom2:uri>
+          <caom2:uri>cadc:PHANGS/ngc2903_12m+7m+tp_co21_2as_strict_mom0.fits</caom2:uri>
           <caom2:productType>science</caom2:productType>
           <caom2:releaseType>data</caom2:releaseType>
           <caom2:contentType>application/fits</caom2:contentType>
@@ -4154,14 +4154,14 @@
         <caom2:name>PHANGS-ALMA pipeline</caom2:name>
         <caom2:project>PHANGS-ALMA</caom2:project>
         <caom2:producer>Leroy et al. (2021), ApJ, Submitted</caom2:producer>
-        <caom2:lastExecuted>2021-03-06T11:03:14.174</caom2:lastExecuted>
+        <caom2:lastExecuted>2021-03-06T11:03:14.174468</caom2:lastExecuted>
         <caom2:inputs>
           <caom2:planeURI>caom:PHANGS/ngc2903_12m+7m+tp_co21/ngc2903_12m+7m+tp_co21_2as</caom2:planeURI>
         </caom2:inputs>
       </caom2:provenance>
       <caom2:artifacts>
         <caom2:artifact caom2:id="e1537f27-e4f4-40a4-94b6-cf0f95ebf2f6">
-          <caom2:uri>ad:PHANGS/ngc2903_12m+7m+tp_co21_2as_strict_emom1.fits</caom2:uri>
+          <caom2:uri>cadc:PHANGS/ngc2903_12m+7m+tp_co21_2as_strict_emom1.fits</caom2:uri>
           <caom2:productType>auxiliary</caom2:productType>
           <caom2:releaseType>data</caom2:releaseType>
           <caom2:contentType>application/fits</caom2:contentType>
@@ -4326,7 +4326,7 @@
           </caom2:parts>
         </caom2:artifact>
         <caom2:artifact caom2:id="e9e4dcdc-13a1-48e7-9dd4-6bac0611cd90">
-          <caom2:uri>ad:PHANGS/ngc2903_12m+7m+tp_co21_2as_strict_mom1.fits</caom2:uri>
+          <caom2:uri>cadc:PHANGS/ngc2903_12m+7m+tp_co21_2as_strict_mom1.fits</caom2:uri>
           <caom2:productType>science</caom2:productType>
           <caom2:releaseType>data</caom2:releaseType>
           <caom2:contentType>application/fits</caom2:contentType>
@@ -4502,14 +4502,14 @@
         <caom2:name>PHANGS-ALMA pipeline</caom2:name>
         <caom2:project>PHANGS-ALMA</caom2:project>
         <caom2:producer>Leroy et al. (2021), ApJ, Submitted</caom2:producer>
-        <caom2:lastExecuted>2021-03-06T11:03:14.174</caom2:lastExecuted>
+        <caom2:lastExecuted>2021-03-06T11:03:14.174468</caom2:lastExecuted>
         <caom2:inputs>
           <caom2:planeURI>caom:PHANGS/ngc2903_12m+7m+tp_co21/ngc2903_12m+7m+tp_co21_2as</caom2:planeURI>
         </caom2:inputs>
       </caom2:provenance>
       <caom2:artifacts>
         <caom2:artifact caom2:id="d1068bcc-c53d-4edf-a615-694e81debcb9">
-          <caom2:uri>ad:PHANGS/ngc2903_12m+7m+tp_co21_2as_strict_emom2.fits</caom2:uri>
+          <caom2:uri>cadc:PHANGS/ngc2903_12m+7m+tp_co21_2as_strict_emom2.fits</caom2:uri>
           <caom2:productType>auxiliary</caom2:productType>
           <caom2:releaseType>data</caom2:releaseType>
           <caom2:contentType>application/fits</caom2:contentType>
@@ -4674,7 +4674,7 @@
           </caom2:parts>
         </caom2:artifact>
         <caom2:artifact caom2:id="94752929-9b5f-4630-84da-d8c274e77e7e">
-          <caom2:uri>ad:PHANGS/ngc2903_12m+7m+tp_co21_2as_strict_mom2.fits</caom2:uri>
+          <caom2:uri>cadc:PHANGS/ngc2903_12m+7m+tp_co21_2as_strict_mom2.fits</caom2:uri>
           <caom2:productType>science</caom2:productType>
           <caom2:releaseType>data</caom2:releaseType>
           <caom2:contentType>application/fits</caom2:contentType>
@@ -4850,14 +4850,14 @@
         <caom2:name>PHANGS-ALMA pipeline</caom2:name>
         <caom2:project>PHANGS-ALMA</caom2:project>
         <caom2:producer>Leroy et al. (2021), ApJ, Submitted</caom2:producer>
-        <caom2:lastExecuted>2021-03-06T11:03:14.174</caom2:lastExecuted>
+        <caom2:lastExecuted>2021-03-06T11:03:14.174468</caom2:lastExecuted>
         <caom2:inputs>
           <caom2:planeURI>caom:PHANGS/ngc2903_12m+7m+tp_co21/ngc2903_12m+7m+tp_co21</caom2:planeURI>
         </caom2:inputs>
       </caom2:provenance>
       <caom2:artifacts>
         <caom2:artifact caom2:id="bac4ba7f-9fa5-4116-9b98-6959c3ea6fa2">
-          <caom2:uri>ad:PHANGS/ngc2903_12m+7m+tp_co21_broad_emom0.fits</caom2:uri>
+          <caom2:uri>cadc:PHANGS/ngc2903_12m+7m+tp_co21_broad_emom0.fits</caom2:uri>
           <caom2:productType>auxiliary</caom2:productType>
           <caom2:releaseType>data</caom2:releaseType>
           <caom2:contentType>application/fits</caom2:contentType>
@@ -5022,7 +5022,7 @@
           </caom2:parts>
         </caom2:artifact>
         <caom2:artifact caom2:id="710c2f32-2f3b-4630-830a-bad4b91c3c4d">
-          <caom2:uri>ad:PHANGS/ngc2903_12m+7m+tp_co21_broad_mom0.fits</caom2:uri>
+          <caom2:uri>cadc:PHANGS/ngc2903_12m+7m+tp_co21_broad_mom0.fits</caom2:uri>
           <caom2:productType>science</caom2:productType>
           <caom2:releaseType>data</caom2:releaseType>
           <caom2:contentType>application/fits</caom2:contentType>
@@ -5198,14 +5198,14 @@
         <caom2:name>PHANGS-ALMA pipeline</caom2:name>
         <caom2:project>PHANGS-ALMA</caom2:project>
         <caom2:producer>Leroy et al. (2021), ApJ, Submitted</caom2:producer>
-        <caom2:lastExecuted>2021-03-06T11:03:14.174</caom2:lastExecuted>
+        <caom2:lastExecuted>2021-03-06T11:03:14.174468</caom2:lastExecuted>
         <caom2:inputs>
           <caom2:planeURI>caom:PHANGS/ngc2903_12m+7m+tp_co21/ngc2903_12m+7m+tp_co21</caom2:planeURI>
         </caom2:inputs>
       </caom2:provenance>
       <caom2:artifacts>
         <caom2:artifact caom2:id="69d9f39d-cf69-4aa0-ae61-35cd252d2dac">
-          <caom2:uri>ad:PHANGS/ngc2903_12m+7m+tp_co21_broad_tpeak.fits</caom2:uri>
+          <caom2:uri>cadc:PHANGS/ngc2903_12m+7m+tp_co21_broad_tpeak.fits</caom2:uri>
           <caom2:productType>science</caom2:productType>
           <caom2:releaseType>data</caom2:releaseType>
           <caom2:contentType>application/fits</caom2:contentType>

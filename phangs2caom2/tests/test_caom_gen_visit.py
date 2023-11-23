@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # ***********************************************************************
 # ******************  CANADIAN ASTRONOMY DATA CENTRE  *******************
 # *************  CENTRE CANADIEN DE DONNÉES ASTRONOMIQUES  **************
@@ -67,20 +66,15 @@
 # ***********************************************************************
 #
 
-from mock import patch
-
-from phangs2caom2 import main_app, APPLICATION, COLLECTION, PHANGSName
-from phangs2caom2 import ARCHIVE
+from cadcdata import FileInfo
+from caom2.diff import get_differences
+from caom2pipe import astro_composable as ac
 from caom2pipe import manage_composable as mc
+from caom2pipe import reader_composable as rdc
+from phangs2caom2.main_app import PHANGSName
+from phangs2caom2 import fits2caom2_augmentation
 
-import logging
 import os
-import sys
-import traceback
-
-THIS_DIR = os.path.dirname(os.path.realpath(__file__))
-TEST_DATA_DIR = os.path.join(THIS_DIR, 'data')
-PLUGIN = os.path.join(os.path.dirname(THIS_DIR), 'main_app.py')
 
 LOOKUP = {
     'ngc2903_12m+7m+tp_co21': [
@@ -169,51 +163,38 @@ def pytest_generate_tests(metafunc):
     metafunc.parametrize('test_name', LOOKUP.keys())
 
 
-@patch('caom2utils.fits2caom2.CadcDataClient')
-def test_main_app(data_client_mock, test_name):
-    obs_path = f'{TEST_DATA_DIR}/{test_name}.expected.xml'
-    output_file = f'{TEST_DATA_DIR}/{test_name}.actual.xml'
-    local = _get_local(test_name)
-    lineage = _get_lineage(test_name)
+def test_visitor(test_name, test_config, test_data_dir):
+    observation = None
+    input_file = f'{test_data_dir}/in.{test_name}.fits.xml'
+    if os.path.exists(input_file):
+        observation = mc.read_obs_from_file(input_file)
+    for f_name in LOOKUP[test_name]:
+        storage_name = PHANGSName(file_name=f_name, source_names=[f'{test_data_dir}/{f_name}'])
+        file_info = FileInfo(id=storage_name.file_uri, file_type='application/fits')
+        headers = ac.make_headers_from_file(f'{test_data_dir}/{f_name}')
+        metadata_reader = rdc.FileMetadataReader()
+        metadata_reader._headers = {storage_name.file_uri: headers}
+        metadata_reader._file_info = {storage_name.file_uri: file_info}
+        kwargs = {
+            'storage_name': storage_name,
+            'metadata_reader': metadata_reader,
+            'config': test_config,
+        }
 
-    if os.path.exists(output_file):
-        os.unlink(output_file)
+        observation = fits2caom2_augmentation.visit(observation, **kwargs)
 
-    data_client_mock.return_value.get_file_info.side_effect = _get_file_info
+    if observation is None:
+        assert False, f'Observation construction failed for {test_name}'
+    else:
+        expected_fqn = f'{test_data_dir}/{test_name}.expected.xml'
+        expected = mc.read_obs_from_file(expected_fqn)
+        compare_result = get_differences(expected, observation)
+        actual_fqn = expected_fqn.replace('expected', 'actual')
+        if os.path.exists(actual_fqn):
+            os.unlink(actual_fqn)
 
-    sys.argv = (
-        f'{APPLICATION} --no_validate --local {local} --observation '
-        f'{COLLECTION} {test_name} -o {output_file} --plugin {PLUGIN} '
-        f'--module {PLUGIN} --lineage {lineage}'
-    ).split()
-    try:
-        main_app.to_caom2()
-    except Exception as e:
-        logging.error(traceback.format_exc())
-
-    compare_result = mc.compare_observations(output_file, obs_path)
-    if compare_result is not None:
-        raise AssertionError(compare_result)
-    # assert False  # cause I want to see logging messages
-
-
-def _get_file_info(archive, file_id):
-    return {'type': 'application/fits'}
-
-
-def _get_lineage(obs_id):
-    result = ''
-    for ii in LOOKUP[obs_id]:
-        storage_name = PHANGSName(file_name=ii)
-        fits = mc.get_lineage(ARCHIVE, storage_name.product_id, ii).replace(
-            '.header', ''
-        )
-        result = f'{result } {fits}'
-    return result
-
-
-def _get_local(obs_id):
-    result = ''
-    for ii in LOOKUP[obs_id]:
-        result = f'{result} {TEST_DATA_DIR}/{ii}'
-    return result
+        if compare_result is not None:
+            mc.write_obs_to_file(observation, actual_fqn)
+            compare_text = '\n'.join([r for r in compare_result])
+            msg = f'Differences found in observation {expected.observation_id}\n{compare_text}'
+            raise AssertionError(msg)

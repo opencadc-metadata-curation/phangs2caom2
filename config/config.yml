@@ -7,12 +7,12 @@ working_directory: /usr/src/app
 proxy_file_name: /usr/src/app/cadcproxy.pem
 # operational value is ivo://cadc.nrc.ca/ams
 # - modifies entries on sc2.canfar.net
-resource_id: ivo://cadc.nrc.ca/sc2repo
-# resource_id: ivo://cadc.nrc.ca/ams
+# resource_id: ivo://cadc.nrc.ca/sc2repo
+resource_id: ivo://cadc.nrc.ca/ams
 # operational value is ivo://cadc.nrc.ca/ams/shared
 # - queries entries on sc2.canfar.net
-tap_id: ivo://cadc.nrc.ca/sc2tap
-# tap_id: ivo://cadc.nrc.ca/ams/shared
+# tap_id: ivo://cadc.nrc.ca/sc2tap
+tap_id: ivo://cadc.nrc.ca/ams/shared
 # file that contains the list of entries to process
 todo_file_name: todo.txt
 # values True False
@@ -20,6 +20,10 @@ todo_file_name: todo.txt
 # .fits, .gz, .json endings as defining the work to be 
 # done.
 use_local_files: True
+data_sources:
+  - /data
+data_source_extensions:
+  - .fits
 # values DEBUG INFO WARNING ERROR
 logging_level: INFO
 # values True False
@@ -45,11 +49,6 @@ retry_file_name: retries.txt
 #
 # this file is created in the logs directory, default is 'progress.txt'
 progress_file_name: progress.txt
-#
-# ad stream value - sorry
-# set stream to 'default', if using TaskType STORE or PULL
-stream: default
-archive: PHANGS
 collection: PHANGS
 #
 # CADC service execution metrics
@@ -83,8 +82,3 @@ interval: 600
 task_types: 
   - store
   - ingest
-features:
-  supports_composite: False
-  supports_multiple_files: False
-  use_file_names: True
-  use_urls: False
