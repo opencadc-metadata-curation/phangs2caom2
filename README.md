@@ -33,7 +33,7 @@ http://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/en/auth/request.html) In this direct
 1. Get the script that executes the pipeline by doing the following:
 
    ```
-   wget https://raw.github.com/opencadc/phangs2caom2/master/scripts/phangs_run.sh
+   wget https://raw.github.com/opencadc-metadata-curation/phangs2caom2/master/scripts/phangs_run.sh
    ```
 
 1. Ensure the script is executable:
