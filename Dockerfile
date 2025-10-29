@@ -23,7 +23,7 @@ WORKDIR /usr/src/app
 ARG OPENCADC_BRANCH=master
 ARG OPENCADC_REPO=opencadc-metadata-curation
 ARG PIPE_BRANCH=master
-ARG PIPE_REPO=opencadc
+ARG PIPE_REPO=opencadc-metadata-curation
 
 RUN pip install git+https://github.com/${OPENCADC_REPO}/caom2pipe.git@${OPENCADC_BRANCH}#egg=caom2pipe
 
