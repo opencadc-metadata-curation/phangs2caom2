@@ -21,7 +21,7 @@ RUN pip install --no-cache-dir \
 WORKDIR /usr/src/app
 
 ARG OPENCADC_BRANCH=master
-ARG OPENCADC_REPO=opencadc
+ARG OPENCADC_REPO=opencadc-metadata-curation
 ARG PIPE_BRANCH=master
 ARG PIPE_REPO=opencadc
 
