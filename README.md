@@ -55,9 +55,9 @@ http://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/en/auth/request.html) In this direct
    root@53bef30d8af3:/usr/src/app# phangs_run
    ```
 
-1. For a description of the `config.yml` file, see: https://github.com/opencadc/collection2caom2/wiki/config.yml
+1. For a description of the `config.yml` file, see: https://github.com/opencadc-metadata-curation/collection2caom2/wiki/config.yml
 
 1. For some instructions that might be helpful on using containers, see:
-https://github.com/opencadc/collection2caom2/wiki/Docker-and-Collections
+https://github.com/opencadc-metadata-curation/collection2caom2/wiki/Docker-and-Collections
 
-1. For some insight into what's happening, see: https://github.com/opencadc/collection2caom2
+1. For some insight into what's happening, see: https://github.com/opencadc-metadata-curation/collection2caom2
