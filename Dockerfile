@@ -4,11 +4,11 @@ FROM opencadc/matplotlib:${OPENCADC_PYTHON_VERSION}-slim as builder
 RUN apt-get update --no-install-recommends  && apt-get dist-upgrade -y && \
     apt-get install -y build-essential git && \
     rm -rf /var/lib/apt/lists/ /tmp/* /var/tmp/*
-    
+
 WORKDIR /usr/src/app
 
 ARG OPENCADC_BRANCH=main
-ARG OPENCADC_REPO=opencadc
+ARG OPENCADC_REPO=opencadc-metadata-curation
 
 RUN pip install git+https://github.com/${OPENCADC_REPO}/caom2pipe.git@${OPENCADC_BRANCH}#egg=caom2pipe
 

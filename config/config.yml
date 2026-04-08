@@ -1,8 +1,8 @@
 working_directory: /usr/src/app
 # the netrc_filename value must be a fully-qualified name
 # netrc_filename: /usr/src/app/netrc
-# this is the name of the proxy certificate file supplied 
-# to the container. It must be a fully-qualified name. 
+# this is the name of the proxy certificate file supplied
+# to the container. It must be a fully-qualified name.
 # One of netrc_filename or proxy_filename must have a value.
 proxy_file_name: /usr/src/app/cadcproxy.pem
 # operational value is ivo://cadc.nrc.ca/ams
@@ -17,7 +17,7 @@ tap_id: ivo://cadc.nrc.ca/ams/shared
 todo_file_name: todo.txt
 # values True False
 # when True, the application will look for files with
-# .fits, .gz, .json endings as defining the work to be 
+# .fits, .gz, .json endings as defining the work to be
 # done.
 use_local_files: True
 data_sources:
@@ -55,20 +55,20 @@ collection: PHANGS
 #
 observe_execution: True
 observable_directory: /usr/src/app/metrics
-# 
+#
 # if the pipeline for the collection tracks known failures, that occurs
 # in this location
-# 
+#
 rejected_file_name: rejected.yml
 rejected_directory: /usr/src/app/rejected
 #
-# for information that needs to be persisted between pipeline 
+# for information that needs to be persisted between pipeline
 # invocations, defaults to 'state.yml', and is found in 'working_directory'
 #
 state_file_name: state.yml
 #
-# if using a state file to time-box execution chunks, this is 
-# the interval, in minutes, that define the start and end of the 
+# if using a state file to time-box execution chunks, this is
+# the interval, in minutes, that define the start and end of the
 # time-box.
 #
 interval: 600
@@ -79,6 +79,6 @@ interval: 600
 # - ingest - read the headers, write the xml to the endpoint found by resource_id
 # - modify - create a footprint and previews for an existing CAOM model record
 # - pull - put a file retrieved from a URL
-task_types: 
+task_types:
   - store
   - ingest

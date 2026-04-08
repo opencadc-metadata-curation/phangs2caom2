@@ -68,7 +68,7 @@
 
 import os
 
-from mock import Mock, patch
+from mock import patch
 
 from caom2pipe.manage_composable import Config
 from phangs2caom2 import composable, PHANGSName

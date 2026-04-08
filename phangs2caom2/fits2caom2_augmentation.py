@@ -69,7 +69,6 @@
 from caom2pipe import caom_composable as cc
 from phangs2caom2.main_app import PHANGSMapping
 
-
 class PHANGSFits2caom2Visitor(cc.Fits2caom2Visitor):
     def __init__(self, observation, **kwargs):
         super().__init__(observation, **kwargs)
