@@ -66,42 +66,66 @@
 # ***********************************************************************
 #
 
-import os
+"""
+Implements the default entry point functions for the workflow
+application.
 
-from mock import patch
+'run' executes based on either provided lists of work, or files on disk.
+'run_by_state' executes incrementally, usually based on time-boxed
+intervals.
+"""
 
-from caom2pipe.manage_composable import Config, TaskType
-from phangs2caom2 import composable, PHANGSName
+import logging
+import sys
+import traceback
+
+from caom2pipe import name_builder_composable as nbc
+from caom2pipe import run_composable as rc
+from phangs2caom2 import fits2caom2_augmentation, PHANGSName
 
 
-@patch('caom2pipe.client_composable.ClientCollection')
-@patch('caom2pipe.execute_composable.OrganizeExecutes.do_one')
-def test_run(run_mock, clients_mock, test_config, tmp_path):
-    test_config.change_working_directory(tmp_path)
-    test_config.logging_level = 'DEBUG'
-    test_config.proxy_file_name = 'cadcproxy.pem'
-    test_config.task_types = [TaskType.INGEST]
-    test_obs_id = 'ngc2903_12m+7m+tp_co21'
-    test_f_id = 'ngc2903_12m+7m+tp_co21_2as'
-    test_f_name = f'{test_f_id}.fits'
-    orig_cwd = os.getcwd()
+META_VISITORS = [fits2caom2_augmentation]
+DATA_VISITORS = []
+
+
+def _run():
+    """
+    Uses a todo file to identify the work to be done.
+
+    :return 0 if successful, -1 if there's any sort of failure. Return status
+        is used by airflow for task instance management and reporting.
+    """
+    name_builder = nbc.GuessingBuilder(PHANGSName)
+    return rc.run_by_todo(name_builder=name_builder, meta_visitors=META_VISITORS, data_visitors=DATA_VISITORS)
+
+
+def run():
+    """Wraps _run in exception handling, with sys.exit calls."""
     try:
-        os.chdir(tmp_path)
-        Config.write_to_file(test_config)
-        with open(test_config.proxy_fqn, 'w') as f:
-            f.write('test content')
+        result = _run()
+        sys.exit(result)
+    except Exception as e:
+        logging.error(e)
+        tb = traceback.format_exc()
+        logging.debug(tb)
+        sys.exit(-1)
 
-        with open(test_config.work_fqn, 'w') as f:
-            f.write(f'{test_f_name}')
 
-        # execution
-        composable._run()
-        assert run_mock.called, 'should have been called'
-        args, kwargs = run_mock.call_args
-        test_storage = args[0]
-        assert isinstance(test_storage, PHANGSName), type(test_storage)
-        assert test_storage.obs_id == test_obs_id, 'wrong obs id'
-        assert test_storage.file_name == test_f_name, 'wrong file name'
-        assert test_storage.file_uri == f'{test_config.scheme}:{test_config.collection}/{test_f_name}', 'uri'
-    finally:
-        os.chdir(orig_cwd)
+def _run_state():
+    """Uses a state file with a timestamp to control which entries will be
+    processed.
+    """
+    name_builder = nbc.GuessingBuilder(PHANGSName)
+    return rc.run_by_state(name_builder=name_builder, meta_visitors=META_VISITORS, data_visitors=DATA_VISITORS)
+
+
+def run_state():
+    """Wraps _run_state in exception handling."""
+    try:
+        _run_state()
+        sys.exit(0)
+    except Exception as e:
+        logging.error(e)
+        tb = traceback.format_exc()
+        logging.debug(tb)
+        sys.exit(-1)

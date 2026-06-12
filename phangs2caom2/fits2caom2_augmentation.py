@@ -2,7 +2,7 @@
 # ******************  CANADIAN ASTRONOMY DATA CENTRE  *******************
 # *************  CENTRE CANADIEN DE DONNÉES ASTRONOMIQUES  **************
 #
-#  (c) 2026.                            (c) 2026.
+#  (c) 2023.                            (c) 2023.
 #  Government of Canada                 Gouvernement du Canada
 #  National Research Council            Conseil national de recherches
 #  Ottawa, Canada, K1A 0R6              Ottawa, Canada, K1A 0R6
@@ -61,47 +61,23 @@
 #  <http://www.gnu.org/licenses/>.      pas le cas, consultez :
 #                                       <http://www.gnu.org/licenses/>.
 #
-#  $Revision: 4 $
+#  : 4 $
 #
 # ***********************************************************************
 #
 
-import os
+from caom2pipe import caom_composable as cc
+from phangs2caom2.main_app import PHANGSMapping
 
-from mock import patch
+class PHANGSFits2caom2Visitor(cc.Fits2caom2Visitor2):
+    def __init__(self, observation, **kwargs):
+        super().__init__(observation, **kwargs)
 
-from caom2pipe.manage_composable import Config, TaskType
-from phangs2caom2 import composable, PHANGSName
+    def _get_mapping(self, headers, _):
+        return PHANGSMapping(
+            self._storage_name, headers, self._clients, self._observable, self._observation, self._config
+        )
 
 
-@patch('caom2pipe.client_composable.ClientCollection')
-@patch('caom2pipe.execute_composable.OrganizeExecutes.do_one')
-def test_run(run_mock, clients_mock, test_config, tmp_path):
-    test_config.change_working_directory(tmp_path)
-    test_config.logging_level = 'DEBUG'
-    test_config.proxy_file_name = 'cadcproxy.pem'
-    test_config.task_types = [TaskType.INGEST]
-    test_obs_id = 'ngc2903_12m+7m+tp_co21'
-    test_f_id = 'ngc2903_12m+7m+tp_co21_2as'
-    test_f_name = f'{test_f_id}.fits'
-    orig_cwd = os.getcwd()
-    try:
-        os.chdir(tmp_path)
-        Config.write_to_file(test_config)
-        with open(test_config.proxy_fqn, 'w') as f:
-            f.write('test content')
-
-        with open(test_config.work_fqn, 'w') as f:
-            f.write(f'{test_f_name}')
-
-        # execution
-        composable._run()
-        assert run_mock.called, 'should have been called'
-        args, kwargs = run_mock.call_args
-        test_storage = args[0]
-        assert isinstance(test_storage, PHANGSName), type(test_storage)
-        assert test_storage.obs_id == test_obs_id, 'wrong obs id'
-        assert test_storage.file_name == test_f_name, 'wrong file name'
-        assert test_storage.file_uri == f'{test_config.scheme}:{test_config.collection}/{test_f_name}', 'uri'
-    finally:
-        os.chdir(orig_cwd)
+def visit(observation, **kwargs):
+    return PHANGSFits2caom2Visitor(observation, **kwargs).visit()

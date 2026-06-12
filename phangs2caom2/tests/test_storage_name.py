@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # ***********************************************************************
 # ******************  CANADIAN ASTRONOMY DATA CENTRE  *******************
 # *************  CENTRE CANADIEN DE DONNÉES ASTRONOMIQUES  **************
@@ -70,14 +69,288 @@ from phangs2caom2 import PHANGSName
 
 
 def test_is_valid():
-    assert PHANGSName(
-        file_name='ngc5236_7m+tp_co21_pbcorr_trimmed_k.fits').is_valid()
+    assert PHANGSName(file_name='ngc2903_12m+7m+tp_co21_2as_broad_emom0.fits', source_names=[]).is_valid()
 
 
 def test_bits():
-    test_subject = PHANGSName(file_name='ngc5236_7m+tp_co21_broad_mom0.fits')
-    assert test_subject.target_name == 'ngc5236', 'wrong target name'
-    assert test_subject.telescope == 'ALMA-7m + ALMA-TP', 'wrong telescope'
-    assert test_subject.obs_id == 'ngc5236_7m+tp_co21', 'wrong obs id'
-    assert test_subject.product_id == 'ngc5236_7m+tp_co21_broad_mom0', \
-        'wrong product id'
+    test_obs1 = 'ngc2903_12m+7m+tp_co21'
+    test_obs2 = 'ngc2903_7m+tp_co21'
+    answer = {
+        'ngc2903_12m+7m+tp_co21': [test_obs1, test_obs1],
+        'ngc2903_12m+7m+tp_co21_strict_ew': [
+            test_obs1,
+            'ngc2903_12m+7m+tp_co21_strict_ew',
+        ],
+        'ngc2903_7m+tp_co21_15as_coverage': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_15as',
+        ],
+        'ngc2903_12m+7m+tp_co21_2as': [
+            test_obs1,
+            'ngc2903_12m+7m+tp_co21_2as',
+        ],
+        'ngc2903_12m+7m+tp_co21_strict_mom0': [
+            test_obs1,
+            'ngc2903_12m+7m+tp_co21_strict_mom0',
+        ],
+        'ngc2903_7m+tp_co21_15as_noise': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_15as',
+        ],
+        'ngc2903_12m+7m+tp_co21_2as_broad_emom0': [
+            test_obs1,
+            'ngc2903_12m+7m+tp_co21_2as_broad_mom0',
+        ],
+        'ngc2903_12m+7m+tp_co21_strict_mom1': [
+            test_obs1,
+            'ngc2903_12m+7m+tp_co21_strict_mom1',
+        ],
+        'ngc2903_7m+tp_co21_15as_strict_eew': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_15as_strict_ew',
+        ],
+        'ngc2903_12m+7m+tp_co21_2as_broad_mom0': [
+            test_obs1,
+            'ngc2903_12m+7m+tp_co21_2as_broad_mom0',
+        ],
+        'ngc2903_12m+7m+tp_co21_strict_mom2': [
+            test_obs1,
+            'ngc2903_12m+7m+tp_co21_strict_mom2',
+        ],
+        'ngc2903_7m+tp_co21_15as_strict_emom0': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_15as_strict_mom0',
+        ],
+        'ngc2903_12m+7m+tp_co21_2as_broad_tpeak': [
+            test_obs1,
+            'ngc2903_12m+7m+tp_co21_2as_broad_tpeak',
+        ],
+        'ngc2903_12m+7m+tp_co21_strictmask': [test_obs1, test_obs1],
+        'ngc2903_7m+tp_co21_15as_strict_emom1': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_15as_strict_mom1',
+        ],
+        'ngc2903_12m+7m+tp_co21_2as_coverage': [
+            test_obs1,
+            'ngc2903_12m+7m+tp_co21_2as',
+        ],
+        'ngc2903_7m+tp_co21': [test_obs2, test_obs2],
+        'ngc2903_7m+tp_co21_15as_strict_emom2': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_15as_strict_mom2',
+        ],
+        'ngc2903_12m+7m+tp_co21_2as_noise': [
+            test_obs1,
+            'ngc2903_12m+7m+tp_co21_2as',
+        ],
+        'ngc2903_7m+tp_co21_11as': [test_obs2, 'ngc2903_7m+tp_co21_11as'],
+        'ngc2903_7m+tp_co21_15as_strict_ew': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_15as_strict_ew',
+        ],
+        'ngc2903_12m+7m+tp_co21_2as_strict_eew': [
+            test_obs1,
+            'ngc2903_12m+7m+tp_co21_2as_strict_ew',
+        ],
+        'ngc2903_7m+tp_co21_11as_broad_emom0': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_11as_broad_mom0',
+        ],
+        'ngc2903_7m+tp_co21_15as_strict_mom0': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_15as_strict_mom0',
+        ],
+        'ngc2903_12m+7m+tp_co21_2as_strict_emom0': [
+            test_obs1,
+            'ngc2903_12m+7m+tp_co21_2as_strict_mom0',
+        ],
+        'ngc2903_7m+tp_co21_11as_broad_mom0': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_11as_broad_mom0',
+        ],
+        'ngc2903_7m+tp_co21_15as_strict_mom1': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_15as_strict_mom1',
+        ],
+        'ngc2903_12m+7m+tp_co21_2as_strict_emom1': [
+            test_obs1,
+            'ngc2903_12m+7m+tp_co21_2as_strict_mom1',
+        ],
+        'ngc2903_7m+tp_co21_11as_broad_tpeak': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_11as_broad_tpeak',
+        ],
+        'ngc2903_7m+tp_co21_15as_strict_mom2': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_15as_strict_mom2',
+        ],
+        'ngc2903_12m+7m+tp_co21_2as_strict_emom2': [
+            test_obs1,
+            'ngc2903_12m+7m+tp_co21_2as_strict_mom2',
+        ],
+        'ngc2903_7m+tp_co21_11as_coverage': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_11as',
+        ],
+        'ngc2903_7m+tp_co21_15as_strictmask': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_15as',
+        ],
+        'ngc2903_12m+7m+tp_co21_2as_strict_ew': [
+            test_obs1,
+            'ngc2903_12m+7m+tp_co21_2as_strict_ew',
+        ],
+        'ngc2903_7m+tp_co21_11as_noise': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_11as',
+        ],
+        'ngc2903_7m+tp_co21_broad_emom0': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_broad_mom0',
+        ],
+        'ngc2903_12m+7m+tp_co21_2as_strict_mom0': [
+            test_obs1,
+            'ngc2903_12m+7m+tp_co21_2as_strict_mom0',
+        ],
+        'ngc2903_7m+tp_co21_11as_strict_eew': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_11as_strict_ew',
+        ],
+        'ngc2903_7m+tp_co21_broad_mom0': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_broad_mom0',
+        ],
+        'ngc2903_12m+7m+tp_co21_2as_strict_mom1': [
+            test_obs1,
+            'ngc2903_12m+7m+tp_co21_2as_strict_mom1',
+        ],
+        'ngc2903_7m+tp_co21_11as_strict_emom0': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_11as_strict_mom0',
+        ],
+        'ngc2903_7m+tp_co21_broad_tpeak': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_broad_tpeak',
+        ],
+        'ngc2903_12m+7m+tp_co21_2as_strict_mom2': [
+            test_obs1,
+            'ngc2903_12m+7m+tp_co21_2as_strict_mom2',
+        ],
+        'ngc2903_7m+tp_co21_11as_strict_emom1': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_11as_strict_mom1',
+        ],
+        'ngc2903_7m+tp_co21_broadmask': [test_obs2, test_obs2],
+        'ngc2903_12m+7m+tp_co21_2as_strictmask': [
+            test_obs1,
+            'ngc2903_12m+7m+tp_co21_2as',
+        ],
+        'ngc2903_7m+tp_co21_11as_strict_emom2': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_11as_strict_mom2',
+        ],
+        'ngc2903_7m+tp_co21_noise': [test_obs2, 'ngc2903_7m+tp_co21'],
+        'ngc2903_12m+7m+tp_co21_broad_emom0': [
+            test_obs1,
+            'ngc2903_12m+7m+tp_co21_broad_mom0',
+        ],
+        'ngc2903_7m+tp_co21_11as_strict_ew': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_11as_strict_ew',
+        ],
+        'ngc2903_7m+tp_co21_strict_eew': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_strict_ew',
+        ],
+        'ngc2903_12m+7m+tp_co21_broad_mom0': [
+            test_obs1,
+            'ngc2903_12m+7m+tp_co21_broad_mom0',
+        ],
+        'ngc2903_7m+tp_co21_11as_strict_mom0': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_11as_strict_mom0',
+        ],
+        'ngc2903_7m+tp_co21_strict_emom0': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_strict_mom0',
+        ],
+        'ngc2903_12m+7m+tp_co21_broad_tpeak': [
+            test_obs1,
+            'ngc2903_12m+7m+tp_co21_broad_tpeak',
+        ],
+        'ngc2903_7m+tp_co21_11as_strict_mom1': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_11as_strict_mom1',
+        ],
+        'ngc2903_7m+tp_co21_strict_emom1': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_strict_mom1',
+        ],
+        'ngc2903_12m+7m+tp_co21_broadmask': [test_obs1, test_obs1],
+        'ngc2903_7m+tp_co21_11as_strict_mom2': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_11as_strict_mom2',
+        ],
+        'ngc2903_7m+tp_co21_strict_emom2': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_strict_mom2',
+        ],
+        'ngc2903_12m+7m+tp_co21_noise': [test_obs1, 'ngc2903_12m+7m+tp_co21'],
+        'ngc2903_7m+tp_co21_11as_strictmask': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_11as',
+        ],
+        'ngc2903_7m+tp_co21_strict_ew': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_strict_ew',
+        ],
+        'ngc2903_12m+7m+tp_co21_strict_eew': [
+            test_obs1,
+            'ngc2903_12m+7m+tp_co21_strict_ew',
+        ],
+        'ngc2903_7m+tp_co21_15as': [test_obs2, 'ngc2903_7m+tp_co21_15as'],
+        'ngc2903_7m+tp_co21_strict_mom0': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_strict_mom0',
+        ],
+        'ngc2903_12m+7m+tp_co21_strict_emom0': [
+            test_obs1,
+            'ngc2903_12m+7m+tp_co21_strict_mom0',
+        ],
+        'ngc2903_7m+tp_co21_15as_broad_emom0': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_15as_broad_mom0',
+        ],
+        'ngc2903_7m+tp_co21_strict_mom1': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_strict_mom1',
+        ],
+        'ngc2903_12m+7m+tp_co21_strict_emom1': [
+            test_obs1,
+            'ngc2903_12m+7m+tp_co21_strict_mom1',
+        ],
+        'ngc2903_7m+tp_co21_15as_broad_mom0': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_15as_broad_mom0',
+        ],
+        'ngc2903_7m+tp_co21_strict_mom2': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_strict_mom2',
+        ],
+        'ngc2903_12m+7m+tp_co21_strict_emom2': [
+            test_obs1,
+            'ngc2903_12m+7m+tp_co21_strict_mom2',
+        ],
+        'ngc2903_7m+tp_co21_15as_broad_tpeak': [
+            test_obs2,
+            'ngc2903_7m+tp_co21_15as_broad_tpeak',
+        ],
+        'ngc2903_7m+tp_co21_strictmask': [test_obs2, test_obs2],
+    }
+
+    for f_name, answer in answer.items():
+        test_subject = PHANGSName(file_name=f_name, source_names=[f_name])
+        assert test_subject.obs_id == answer[0], f'wrong obs_id for {f_name}'
+        assert test_subject.target_name == 'ngc2903', f'wrong target name for {f_name}'
+        if len(answer) > 1:
+            assert test_subject.product_id == answer[1], f'wrong product_id for {f_name}'

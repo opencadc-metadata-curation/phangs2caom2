@@ -1,32 +1,62 @@
-FROM opencadc/astropy:3.8-slim
+ARG OPENCADC_PYTHON_VERSION=3.13
+FROM opencadc/matplotlib:${OPENCADC_PYTHON_VERSION}-slim as builder
+ARG OPENCADC_PYTHON_VERSION
 
-RUN apt-get update -y && apt-get dist-upgrade -y && \
-    apt-get install -y \
-       build-essential \
-       git && \
+RUN apt-get update --no-install-recommends  && apt-get dist-upgrade -y && \
+    apt-get install -y build-essential git libcfitsio-bin && \
     rm -rf /var/lib/apt/lists/ /tmp/* /var/tmp/*
-    
-RUN pip install --no-cache-dir \
-    cadcdata \
-    cadctap \
-    caom2 \
-    caom2repo \
-    caom2utils \
-    importlib-metadata \
-    python-dateutil \
-    PyYAML \
-    spherical-geometry \
-    vos
 
 WORKDIR /usr/src/app
 
-ARG OPENCADC_BRANCH=master
+ARG OPENCADC_BRANCH=main
 ARG OPENCADC_REPO=opencadc-metadata-curation
-ARG PIPE_BRANCH=master
-ARG PIPE_REPO=opencadc-metadata-curation
 
 RUN pip install git+https://github.com/${OPENCADC_REPO}/caom2pipe.git@${OPENCADC_BRANCH}#egg=caom2pipe
 
-RUN pip install git+https://github.com/${PIPE_REPO}/phangs2caom2.git@${PIPE_BRANCH}#egg=phangs2caom2
+RUN pip install git+https://github.com/${OPENCADC_REPO}/phangs2caom2.git@${OPENCADC_BRANCH}#egg=phangs2caom2
+
+FROM python:${OPENCADC_PYTHON_VERSION}-slim
+WORKDIR /usr/src/app
+ARG OPENCADC_PYTHON_VERSION
+
+COPY --from=builder /usr/local/lib/python${OPENCADC_PYTHON_VERSION}/site-packages/ /usr/local/lib/python${OPENCADC_PYTHON_VERSION}/site-packages/
+COPY --from=builder /usr/local/bin/* /usr/local/bin/
+COPY --from=builder /usr/local/.config/* /usr/local/.config/
+
+COPY --from=builder /etc/magic /etc/magic
+COPY --from=builder /etc/magic.mime /etc/magic.mime
+COPY --from=builder /usr/lib/x86_64-linux-gnu/libmagic* /usr/lib/x86_64-linux-gnu/
+COPY --from=builder /usr/lib/file/magic.mgc /usr/lib/file/
+COPY --from=builder /usr/share/misc/magic /usr/share/misc/magic
+COPY --from=builder /usr/share/misc/magic.mgc /usr/share/misc/magic.mgc
+COPY --from=builder /usr/share/file/magic.mgc /usr/share/file/magic.mgc
+
+# fitsverify
+COPY --from=builder /usr/lib/x86_64-linux-gnu/libcfitsio* /usr/lib/x86_64-linux-gnu/
+COPY --from=builder /usr/lib/x86_64-linux-gnu/libcurl-gnutls* /usr/lib/x86_64-linux-gnu/
+COPY --from=builder /usr/lib/x86_64-linux-gnu/libnghttp2* /usr/lib/x86_64-linux-gnu/
+COPY --from=builder /usr/lib/x86_64-linux-gnu/libnghttp3* /usr/lib/x86_64-linux-gnu/
+COPY --from=builder /usr/lib/x86_64-linux-gnu/libngtcp2* /usr/lib/x86_64-linux-gnu/
+COPY --from=builder /usr/lib/x86_64-linux-gnu/libidn2* /usr/lib/x86_64-linux-gnu/
+COPY --from=builder /usr/lib/x86_64-linux-gnu/librtmp* /usr/lib/x86_64-linux-gnu/
+COPY --from=builder /usr/lib/x86_64-linux-gnu/libssh2* /usr/lib/x86_64-linux-gnu/
+COPY --from=builder /usr/lib/x86_64-linux-gnu/libpsl* /usr/lib/x86_64-linux-gnu/
+COPY --from=builder /usr/lib/x86_64-linux-gnu/libgnutls* /usr/lib/x86_64-linux-gnu/
+COPY --from=builder /usr/lib/x86_64-linux-gnu/libgssapi_krb5* /usr/lib/x86_64-linux-gnu/
+COPY --from=builder /usr/lib/x86_64-linux-gnu/libldap* /usr/lib/x86_64-linux-gnu/
+COPY --from=builder /usr/lib/x86_64-linux-gnu/liblber* /usr/lib/x86_64-linux-gnu/
+COPY --from=builder /usr/lib/x86_64-linux-gnu/libsasl* /usr/lib/x86_64-linux-gnu/
+COPY --from=builder /usr/lib/x86_64-linux-gnu/libbrotli* /usr/lib/x86_64-linux-gnu/
+COPY --from=builder /usr/lib/x86_64-linux-gnu/libunistring* /usr/lib/x86_64-linux-gnu/
+COPY --from=builder /usr/lib/x86_64-linux-gnu/libp11-kit* /usr/lib/x86_64-linux-gnu/
+COPY --from=builder /usr/lib/x86_64-linux-gnu/libtasn1* /usr/lib/x86_64-linux-gnu/
+COPY --from=builder /usr/lib/x86_64-linux-gnu/libkrb5* /usr/lib/x86_64-linux-gnu/
+COPY --from=builder /usr/lib/x86_64-linux-gnu/libk5crypto* /usr/lib/x86_64-linux-gnu/
+COPY --from=builder /usr/lib/x86_64-linux-gnu/libcom_err* /usr/lib/x86_64-linux-gnu/
+COPY --from=builder /usr/lib/x86_64-linux-gnu/libkeyutils* /usr/lib/x86_64-linux-gnu/
+
+RUN useradd --create-home --shell /bin/bash cadcops
+USER cadcops
 
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+

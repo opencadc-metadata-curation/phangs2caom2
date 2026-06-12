@@ -1,1 +1,1 @@
-test_obs_id.fits
+ngc2903_12m+7m+tp_co21_2as.fits

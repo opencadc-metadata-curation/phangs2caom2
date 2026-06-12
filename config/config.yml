@@ -1,25 +1,29 @@
 working_directory: /usr/src/app
 # the netrc_filename value must be a fully-qualified name
 # netrc_filename: /usr/src/app/netrc
-# this is the name of the proxy certificate file supplied 
-# to the container. It must be a fully-qualified name. 
+# this is the name of the proxy certificate file supplied
+# to the container. It must be a fully-qualified name.
 # One of netrc_filename or proxy_filename must have a value.
 proxy_file_name: /usr/src/app/cadcproxy.pem
 # operational value is ivo://cadc.nrc.ca/ams
 # - modifies entries on sc2.canfar.net
-resource_id: ivo://cadc.nrc.ca/sc2repo
-# resource_id: ivo://cadc.nrc.ca/ams
+# resource_id: ivo://cadc.nrc.ca/sc2repo
+resource_id: ivo://cadc.nrc.ca/ams
 # operational value is ivo://cadc.nrc.ca/ams/shared
 # - queries entries on sc2.canfar.net
-tap_id: ivo://cadc.nrc.ca/sc2tap
-# tap_id: ivo://cadc.nrc.ca/ams/shared
+# tap_id: ivo://cadc.nrc.ca/sc2tap
+tap_id: ivo://cadc.nrc.ca/ams/shared
 # file that contains the list of entries to process
 todo_file_name: todo.txt
 # values True False
 # when True, the application will look for files with
-# .fits, .gz, .json endings as defining the work to be 
+# .fits, .gz, .json endings as defining the work to be
 # done.
 use_local_files: True
+data_sources:
+  - /data
+data_source_extensions:
+  - .fits
 # values DEBUG INFO WARNING ERROR
 logging_level: INFO
 # values True False
@@ -45,31 +49,26 @@ retry_file_name: retries.txt
 #
 # this file is created in the logs directory, default is 'progress.txt'
 progress_file_name: progress.txt
-#
-# ad stream value - sorry
-# set stream to 'default', if using TaskType STORE or PULL
-stream: default
-archive: PHANGS
 collection: PHANGS
 #
 # CADC service execution metrics
 #
 observe_execution: True
 observable_directory: /usr/src/app/metrics
-# 
+#
 # if the pipeline for the collection tracks known failures, that occurs
 # in this location
-# 
+#
 rejected_file_name: rejected.yml
 rejected_directory: /usr/src/app/rejected
 #
-# for information that needs to be persisted between pipeline 
+# for information that needs to be persisted between pipeline
 # invocations, defaults to 'state.yml', and is found in 'working_directory'
 #
 state_file_name: state.yml
 #
-# if using a state file to time-box execution chunks, this is 
-# the interval, in minutes, that define the start and end of the 
+# if using a state file to time-box execution chunks, this is
+# the interval, in minutes, that define the start and end of the
 # time-box.
 #
 interval: 600
@@ -80,11 +79,6 @@ interval: 600
 # - ingest - read the headers, write the xml to the endpoint found by resource_id
 # - modify - create a footprint and previews for an existing CAOM model record
 # - pull - put a file retrieved from a URL
-task_types: 
+task_types:
   - store
   - ingest
-features:
-  supports_composite: False
-  supports_multiple_files: False
-  use_file_names: True
-  use_urls: False
