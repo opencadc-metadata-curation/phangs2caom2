@@ -69,11 +69,11 @@
 from caom2pipe import caom_composable as cc
 from phangs2caom2.main_app import PHANGSMapping
 
-class PHANGSFits2caom2Visitor(cc.Fits2caom2Visitor):
+class PHANGSFits2caom2Visitor(cc.Fits2caom2Visitor2):
     def __init__(self, observation, **kwargs):
         super().__init__(observation, **kwargs)
 
-    def _get_mapping(self, headers):
+    def _get_mapping(self, headers, _):
         return PHANGSMapping(
             self._storage_name, headers, self._clients, self._observable, self._observation, self._config
         )

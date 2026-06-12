@@ -2,7 +2,7 @@
 # ******************  CANADIAN ASTRONOMY DATA CENTRE  *******************
 # *************  CENTRE CANADIEN DE DONNÉES ASTRONOMIQUES  **************
 #
-#  (c) 2020.                            (c) 2020.
+#  (c) 2026.                            (c) 2026.
 #  Government of Canada                 Gouvernement du Canada
 #  National Research Council            Conseil national de recherches
 #  Ottawa, Canada, K1A 0R6              Ottawa, Canada, K1A 0R6
@@ -70,7 +70,7 @@ import os
 
 from mock import patch
 
-from caom2pipe.manage_composable import Config
+from caom2pipe.manage_composable import Config, TaskType
 from phangs2caom2 import composable, PHANGSName
 
 
@@ -80,6 +80,7 @@ def test_run(run_mock, clients_mock, test_config, tmp_path):
     test_config.change_working_directory(tmp_path)
     test_config.logging_level = 'DEBUG'
     test_config.proxy_file_name = 'cadcproxy.pem'
+    test_config.task_types = [TaskType.INGEST]
     test_obs_id = 'ngc2903_12m+7m+tp_co21'
     test_f_id = 'ngc2903_12m+7m+tp_co21_2as'
     test_f_name = f'{test_f_id}.fits'

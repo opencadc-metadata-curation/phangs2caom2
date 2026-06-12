@@ -164,6 +164,7 @@ def pytest_generate_tests(metafunc):
 
 
 def test_visitor(test_name, test_config, test_data_dir):
+    mc.StorageName.namespace = test_config.namespace
     observation = None
     input_file = f'{test_data_dir}/in.{test_name}.fits.xml'
     if os.path.exists(input_file):
