@@ -2,7 +2,7 @@
 # ******************  CANADIAN ASTRONOMY DATA CENTRE  *******************
 # *************  CENTRE CANADIEN DE DONNÉES ASTRONOMIQUES  **************
 #
-#  (c) 2019.                            (c) 2019.
+#  (c) 2026.                            (c) 2026.
 #  Government of Canada                 Gouvernement du Canada
 #  National Research Council            Conseil national de recherches
 #  Ottawa, Canada, K1A 0R6              Ottawa, Canada, K1A 0R6
@@ -69,7 +69,7 @@ from phangs2caom2 import PHANGSName
 
 
 def test_is_valid():
-    assert PHANGSName(file_name='ngc2903_12m+7m+tp_co21_2as_broad_emom0.fits', source_names=[]).is_valid()
+    assert PHANGSName(source_names=['ngc2903_12m+7m+tp_co21_2as_broad_emom0.fits']).is_valid()
 
 
 def test_bits():
@@ -349,7 +349,7 @@ def test_bits():
     }
 
     for f_name, answer in answer.items():
-        test_subject = PHANGSName(file_name=f_name, source_names=[f_name])
+        test_subject = PHANGSName(source_names=[f_name])
         assert test_subject.obs_id == answer[0], f'wrong obs_id for {f_name}'
         assert test_subject.target_name == 'ngc2903', f'wrong target name for {f_name}'
         if len(answer) > 1:
