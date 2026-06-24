@@ -79,7 +79,6 @@ import logging
 import sys
 import traceback
 
-from caom2pipe import name_builder_composable as nbc
 from caom2pipe import run_composable as rc
 from phangs2caom2 import fits2caom2_augmentation, PHANGSName
 
@@ -95,8 +94,9 @@ def _run():
     :return 0 if successful, -1 if there's any sort of failure. Return status
         is used by airflow for task instance management and reporting.
     """
-    name_builder = nbc.GuessingBuilder(PHANGSName)
-    return rc.run_by_todo(name_builder=name_builder, meta_visitors=META_VISITORS, data_visitors=DATA_VISITORS)
+    return rc.run_by_todo_runner_meta(
+        meta_visitors=META_VISITORS, data_visitors=DATA_VISITORS, storage_name_ctor=PHANGSName
+    )
 
 
 def run():
@@ -115,8 +115,9 @@ def _run_state():
     """Uses a state file with a timestamp to control which entries will be
     processed.
     """
-    name_builder = nbc.GuessingBuilder(PHANGSName)
-    return rc.run_by_state(name_builder=name_builder, meta_visitors=META_VISITORS, data_visitors=DATA_VISITORS)
+    return rc.run_by_state_runner_meta(
+        meta_visitors=META_VISITORS, data_visitors=DATA_VISITORS, storage_name_ctor=PHANGSName
+    )
 
 
 def run_state():

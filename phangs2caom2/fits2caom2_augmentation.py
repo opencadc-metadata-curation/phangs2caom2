@@ -2,7 +2,7 @@
 # ******************  CANADIAN ASTRONOMY DATA CENTRE  *******************
 # *************  CENTRE CANADIEN DE DONNÉES ASTRONOMIQUES  **************
 #
-#  (c) 2023.                            (c) 2023.
+#  (c) 2026.                            (c) 2026.
 #  Government of Canada                 Gouvernement du Canada
 #  National Research Council            Conseil national de recherches
 #  Ottawa, Canada, K1A 0R6              Ottawa, Canada, K1A 0R6
@@ -69,15 +69,10 @@
 from caom2pipe import caom_composable as cc
 from phangs2caom2.main_app import PHANGSMapping
 
-class PHANGSFits2caom2Visitor(cc.Fits2caom2Visitor2):
-    def __init__(self, observation, **kwargs):
-        super().__init__(observation, **kwargs)
+class PHANGSFits2caom2Visitor(cc.Fits2caom2VisitorRunnerMeta):
 
-    def _get_mapping(self, headers, _):
-        return PHANGSMapping(
-            self._storage_name, headers, self._clients, self._observable, self._observation, self._config
-        )
-
+    def _get_mappings(self, _):
+        return [PHANGSMapping(self._storage_name, self._clients, self._reporter, self._observation, self._config)]
 
 def visit(observation, **kwargs):
     return PHANGSFits2caom2Visitor(observation, **kwargs).visit()

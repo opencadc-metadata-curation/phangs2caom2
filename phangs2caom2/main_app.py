@@ -2,7 +2,7 @@
 # ******************  CANADIAN ASTRONOMY DATA CENTRE  *******************
 # *************  CENTRE CANADIEN DE DONNÉES ASTRONOMIQUES  **************
 #
-#  (c) 2023.                            (c) 2023.
+#  (c) 2026.                            (c) 2026.
 #  Government of Canada                 Gouvernement du Canada
 #  National Research Council            Conseil national de recherches
 #  Ottawa, Canada, K1A 0R6              Ottawa, Canada, K1A 0R6
@@ -88,7 +88,6 @@ https://cadc-ccda.atlassian.net/wiki/spaces/C/pages/1133281297/PHANGS
 
 """
 
-import os
 import re
 
 from math import sqrt
@@ -107,8 +106,8 @@ class PHANGSName(mc.StorageName):
     - support uncompressed files in storage
     """
 
-    def __init__(self, file_name, source_names):
-        super().__init__(file_name=file_name, source_names=source_names)
+    def __init__(self, source_names):
+        super().__init__(source_names=source_names)
         self._target_name = None
         self._telescope = None
         self._assign_bits()
@@ -166,9 +165,7 @@ class PHANGSName(mc.StorageName):
             raise mc.CadcException(f'Unexpected telescope value in {self._file_id}')
 
 
-class PHANGSMapping(cc.TelescopeMapping):
-    def __init__(self, storage_name, headers, clients, observable, observation, config):
-        super().__init__(storage_name, headers, clients, observable, observation, config)
+class PHANGSMapping(cc.TelescopeMapping2):
 
     def accumulate_blueprint(self, bp):
         """Configure the telescope-specific ObsBlueprint at the CAOM model

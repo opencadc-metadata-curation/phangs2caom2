@@ -2,7 +2,7 @@
 # ******************  CANADIAN ASTRONOMY DATA CENTRE  *******************
 # *************  CENTRE CANADIEN DE DONNÉES ASTRONOMIQUES  **************
 #
-#  (c) 2019.                            (c) 2019.
+#  (c) 2026.                            (c) 2026.
 #  Government of Canada                 Gouvernement du Canada
 #  National Research Council            Conseil national de recherches
 #  Ottawa, Canada, K1A 0R6              Ottawa, Canada, K1A 0R6
@@ -70,11 +70,13 @@ from cadcdata import FileInfo
 from caom2.diff import get_differences
 from caom2pipe import astro_composable as ac
 from caom2pipe import manage_composable as mc
-from caom2pipe import reader_composable as rdc
 from phangs2caom2.main_app import PHANGSName
 from phangs2caom2 import fits2caom2_augmentation
 
 import os
+
+from mock import Mock
+
 
 LOOKUP = {
     'ngc2903_12m+7m+tp_co21': [
@@ -163,23 +165,25 @@ def pytest_generate_tests(metafunc):
     metafunc.parametrize('test_name', LOOKUP.keys())
 
 
-def test_visitor(test_name, test_config, test_data_dir):
+def test_visitor(test_name, test_config, test_data_dir, tmp_path):
+    test_config.change_working_directory(tmp_path.as_posix())
     mc.StorageName.namespace = test_config.namespace
     observation = None
     input_file = f'{test_data_dir}/in.{test_name}.fits.xml'
     if os.path.exists(input_file):
         observation = mc.read_obs_from_file(input_file)
     for f_name in LOOKUP[test_name]:
-        storage_name = PHANGSName(file_name=f_name, source_names=[f'{test_data_dir}/{f_name}'])
+        storage_name = PHANGSName(source_names=[f'{test_data_dir}/{f_name}'])
         file_info = FileInfo(id=storage_name.file_uri, file_type='application/fits')
         headers = ac.make_headers_from_file(f'{test_data_dir}/{f_name}')
-        metadata_reader = rdc.FileMetadataReader()
-        metadata_reader._headers = {storage_name.file_uri: headers}
-        metadata_reader._file_info = {storage_name.file_uri: file_info}
+        storage_name.file_info = {storage_name.file_uri:file_info}
+        storage_name.metadata = {storage_name.file_uri:headers}
+        test_reporter = mc.ExecutionReporter2(test_config)
         kwargs = {
             'storage_name': storage_name,
-            'metadata_reader': metadata_reader,
             'config': test_config,
+            'reporter': test_reporter,
+            'clients': Mock(),
         }
 
         observation = fits2caom2_augmentation.visit(observation, **kwargs)
